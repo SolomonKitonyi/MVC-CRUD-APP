@@ -12,3 +12,9 @@ input,button {
   font-size: 1.2rem;
   margin: 10px;
 }
+.course {
+  height: 270px;
+  width: 500px;
+  border: 3px black solid;
+  margin: 12px;
+}
