@@ -1,10 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 
 const courses = require('./Controllers/Routes/courses');
 
 app.use(express.json());
+app.use(cors());
 app.use('/api/courses', courses);
 
 const PORT = 3001;
