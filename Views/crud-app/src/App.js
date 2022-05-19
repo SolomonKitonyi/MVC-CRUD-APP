@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Axios from 'axios';
 import './App.css';
 
 function App() {
@@ -6,7 +7,10 @@ function App() {
 	const [numberOfHours, setNumberOfHours] = useState(0);
 
 	const addCourse = () => {
-		console.log(courseName, numberOfHours);
+		Axios.post('http://localhost:3001/api/courses', {
+			name: courseName,
+			numberOfHours: numberOfHours,
+		});
 	};
 	return (
 		<div className="App">
