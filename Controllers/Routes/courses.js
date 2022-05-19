@@ -19,5 +19,13 @@ router.get('/', async (req, res) => {
 	const courses = await Course.find();
 	res.send(courses);
 });
+//update course
+router.put('/', async (req, res) => {
+	const course = await Course.findByIdAndUpdate(req.body.id, {
+		name: req.body.newCourseName,
+	});
+	if (!course) return res.status(404).send('Course not found');
+	res.send(course);
+});
 
 module.exports = router;
