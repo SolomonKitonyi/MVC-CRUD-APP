@@ -2,7 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 
+const courses = require('./Controllers/Routes/courses');
+
 app.use(express.json());
+app.use('/api/courses', courses);
 
 const PORT = 3001;
 
