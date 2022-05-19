@@ -16,7 +16,8 @@ router.post('/', async (req, res) => {
 	res.send(course);
 });
 router.get('/', async (req, res) => {
-	res.send('Connected');
+	const courses = await Course.find();
+	res.send(courses);
 });
 
 module.exports = router;
