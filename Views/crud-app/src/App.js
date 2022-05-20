@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import './App.css';
 
+import Popup from './Popup';
+
 function App() {
 	const [courseName, setCourseName] = useState('');
 	const [numberOfHours, setNumberOfHours] = useState(0);
 	const [courses, setCourses] = useState([]);
 	const [newCourseName, setNewCourseName] = useState('');
 	const [refresh, setRefresh] = useState(false);
+	const [message, setMessage] = useState('');
+	const [background, setBackground] = useState('');
+	const [visibility, setVisibility] = useState('');
 
 	useEffect(() => {
 		Axios.get('http://localhost:3001/api/courses')
@@ -18,31 +23,77 @@ function App() {
 	}, [refresh]);
 
 	const addCourse = () => {
-		if (courseName.length < 3 || numberOfHours <= 0) return;
+		if (courseName.length < 3 || numberOfHours <= 0) {
+			setMessage('Please Add Course with Valid Name and Hours!!');
+			setBackground('red');
+			setVisibility('visible');
+			return;
+		}
 		Axios.post('http://localhost:3001/api/courses', {
 			name: courseName,
 			numberOfHours: numberOfHours,
-		});
+		})
+			.then(() => {
+				setMessage('Course Added Successfully!!');
+				setBackground('green');
+				setVisibility('visible');
+			})
+			.catch(() => {
+				setMessage('Course Add Fail!!');
+				setBackground('red');
+				setVisibility('visible');
+			});
 		setCourseName('');
 		setNumberOfHours(0);
 		setRefresh(!refresh);
 	};
 	const updateCourse = (id) => {
-		if (newCourseName.length < 1) return;
+		if (newCourseName.length < 1) {
+			setMessage('Please Add Course with Valid Name!!');
+			setBackground('red');
+			setVisibility('visible');
+			return;
+		}
 		Axios.put('http://localhost:3001/api/courses', {
 			newCourseName: newCourseName,
 			id: id,
-		});
+		})
+			.then(() => {
+				setMessage('Course Update Success!!');
+				setBackground('green');
+				setVisibility('visible');
+			})
+			.catch(() => {
+				setMessage('Course Update Fail!!');
+				setBackground('red');
+				setVisibility('visible');
+			});
 		setNewCourseName('');
 		setRefresh(!refresh);
 	};
 	const deleteCourse = (id) => {
-		Axios.delete(`http://localhost:3001/api/courses/${id}`);
+		Axios.delete(`http://localhost:3001/api/courses/${id}`)
+			.then(() => {
+				setMessage('Course Delete Success!!');
+				setBackground('green');
+				setVisibility('visible');
+			})
+			.catch(() => {
+				setMessage('Course Delete Fail!!');
+				setBackground('red');
+				setVisibility('visible');
+			});
 		setRefresh(!refresh);
 	};
 	return (
 		<div className="App">
 			<h1>CRUD APPLICATION</h1>
+			<Popup
+				background={background}
+				message={message}
+				setVisibility={setVisibility}
+				visibility={visibility}
+			/>
 			<label>Course Name: </label>
 			<input
 				type="text"
