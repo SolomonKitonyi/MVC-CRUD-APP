@@ -1,0 +1,32 @@
+.popup {
+    width: 250px;
+    height: 150px;
+    border: 2px solid burlywood;
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin: 20px 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: AnimatePop-up 6s 0.1s infinite forwards;
+    color: purple;
+    visibility: hidden;
+}
+
+@keyframes AnimatePop-up {
+    0% {
+        display: block;
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.5);
+    }
+    75% {
+        transform: skew(-10deg) scale(0.5);
+    }
+    100% {
+        transform: skewY(0) scale(0.7);
+    }
+}
