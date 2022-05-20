@@ -27,5 +27,11 @@ router.put('/', async (req, res) => {
 	if (!course) return res.status(404).send('Course not found');
 	res.send(course);
 });
+//Delete course
+router.delete('/:id', async (req, res) => {
+	const course = await Course.findByIdAndRemove(req.params.id);
+	if (!course) return res.status(404).send('Course not found');
+	res.send(course);
+});
 
 module.exports = router;
