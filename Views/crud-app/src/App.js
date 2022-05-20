@@ -94,19 +94,21 @@ function App() {
 				setVisibility={setVisibility}
 				visibility={visibility}
 			/>
-			<label>Course Name: </label>
-			<input
-				type="text"
-				value={courseName}
-				onChange={(e) => setCourseName(e.target.value)}
-			/>
-			<label>Number of Hours: </label>
-			<input
-				type="number"
-				value={numberOfHours}
-				onChange={(e) => setNumberOfHours(e.target.value)}
-			/>
-			<button onClick={addCourse}>ADD COURSE</button>
+			<div className="addcourse-div">
+				<label>Course Name: </label>
+				<input
+					type="text"
+					value={courseName}
+					onChange={(e) => setCourseName(e.target.value)}
+				/>
+				<label>Number of Hours: </label>
+				<input
+					type="number"
+					value={numberOfHours}
+					onChange={(e) => setNumberOfHours(e.target.value)}
+				/>
+				<button onClick={addCourse}>ADD COURSE</button>
+			</div>
 			<h1>Course List</h1>
 			{courses.length < 1 ? <h2>No Courses Found ADD ONE</h2> : null}
 			{courses.map((course) => (
