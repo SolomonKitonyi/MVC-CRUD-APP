@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: gainsboro;
 }
 
 input,button {
@@ -12,9 +13,48 @@ input,button {
   font-size: 1.2rem;
   margin: 10px;
 }
+.addcourse-div {
+  background: saddlebrown;
+  height: 200px;
+  border: 5px solid black;
+  box-shadow: 100px 100px solid black;
+  padding: 50px;
+  border-radius: 5px;
+}
+.addcourse-div > input:hover {
+  transform: scale(1.2);
+}
+.addcourse-div > input:focus {
+  transform: scale(1);
+}
+button:hover {
+  background: powderblue;
+  transform: scale(1.2);
+  cursor: pointer;
+}
 .course {
   height: 270px;
   width: 500px;
   border: 3px black solid;
   margin: 12px;
+  background: purple;
+  border-radius: 5px;
+}
+.course:hover {
+  animation: AnimateCourse 1s 0.1s 1;
+}
+
+@keyframes AnimateCourse {
+  0% {
+    transform: skewY(0);
+  }
+  50% {
+    transform: skewY(15deg);
+  }
+  75% {
+    transform: skewY(-15deg);
+  }
+  100% {
+    transform: skewY(0);
+  }
 }
