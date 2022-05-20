@@ -18,10 +18,14 @@ function App() {
 	}, [refresh]);
 
 	const addCourse = () => {
+		if (courseName.length < 3 || numberOfHours <= 0) return;
 		Axios.post('http://localhost:3001/api/courses', {
 			name: courseName,
 			numberOfHours: numberOfHours,
 		});
+		setCourseName('');
+		setNumberOfHours(0);
+		setRefresh(!refresh);
 	};
 	const updateCourse = (id) => {
 		if (newCourseName.length < 1) return;
@@ -32,15 +36,28 @@ function App() {
 		setNewCourseName('');
 		setRefresh(!refresh);
 	};
+	const deleteCourse = (id) => {
+		Axios.delete(`http://localhost:3001/api/courses/${id}`);
+		setRefresh(!refresh);
+	};
 	return (
 		<div className="App">
 			<h1>CRUD APPLICATION</h1>
 			<label>Course Name: </label>
-			<input type="text" onChange={(e) => setCourseName(e.target.value)} />
+			<input
+				type="text"
+				value={courseName}
+				onChange={(e) => setCourseName(e.target.value)}
+			/>
 			<label>Number of Hours: </label>
-			<input type="number" onChange={(e) => setNumberOfHours(e.target.value)} />
+			<input
+				type="number"
+				value={numberOfHours}
+				onChange={(e) => setNumberOfHours(e.target.value)}
+			/>
 			<button onClick={addCourse}>ADD COURSE</button>
 			<h1>Course List</h1>
+			{courses.length < 1 ? <h2>No Courses Found ADD ONE</h2> : null}
 			{courses.map((course) => (
 				<div key={course._id} className="course">
 					<h1>{course.name}</h1>
@@ -52,7 +69,7 @@ function App() {
 						onChange={(e) => setNewCourseName(e.target.value)}
 					/>
 					<button onClick={() => updateCourse(course._id)}>Update</button>
-					<button>delete</button>
+					<button onClick={() => deleteCourse(course._id)}>delete</button>
 				</div>
 			))}
 		</div>
