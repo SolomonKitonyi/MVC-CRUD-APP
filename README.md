@@ -25,8 +25,8 @@ $npm i
 -This will install all the dependencies
 
 #### Running the application
-- Navigate to Views folder and run npm start
-- Open another terminal window and in the project run folder run node index.js
+- Navigate to Views folder and run npm build then run npm start
+- Open another terminal window and in the project root folder run node index.js
 
-#### To view the project in network broswer open browser and paste the link below
-https://crud-frontend-mvc-app.herokuapp.com/
+#### To view the deployed version of the application
+Open https://crud-frontend-mvc-app.herokuapp.com/
