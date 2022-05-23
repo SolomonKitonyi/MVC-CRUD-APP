@@ -39,6 +39,7 @@ function App() {
 				setMessage('Course Added Successfully!!');
 				setBackground('green');
 				setVisibility('visible');
+				setRefresh(!refresh);
 			})
 			.catch(() => {
 				setMessage('Course Add Fail!!');
@@ -47,7 +48,6 @@ function App() {
 			});
 		setCourseName('');
 		setNumberOfHours(0);
-		setRefresh(!refresh);
 	};
 	const updateCourse = (id) => {
 		if (newCourseName.length < 1) {
@@ -64,6 +64,7 @@ function App() {
 				setMessage('Course Update Success!!');
 				setBackground('green');
 				setVisibility('visible');
+				setRefresh(!refresh);
 			})
 			.catch(() => {
 				setMessage('Course Update Fail!!');
@@ -71,7 +72,6 @@ function App() {
 				setVisibility('visible');
 			});
 		setNewCourseName('');
-		setRefresh(!refresh);
 	};
 	const deleteCourse = (id) => {
 		Axios.delete(`${url}/${id}`)
@@ -79,13 +79,13 @@ function App() {
 				setMessage('Course Delete Success!!');
 				setBackground('green');
 				setVisibility('visible');
+				setRefresh(!refresh);
 			})
 			.catch(() => {
 				setMessage('Course Delete Fail!!');
 				setBackground('red');
 				setVisibility('visible');
 			});
-		setRefresh(!refresh);
 	};
 	return (
 		<div className="App">
@@ -120,7 +120,6 @@ function App() {
 					<input
 						type="text"
 						placeholder="New Course Name"
-						value={newCourseName}
 						onChange={(e) => setNewCourseName(e.target.value)}
 					/>
 					<button onClick={() => updateCourse(course._id)}>Update</button>
