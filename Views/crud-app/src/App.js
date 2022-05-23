@@ -14,7 +14,7 @@ function App() {
 	const [background, setBackground] = useState('');
 	const [visibility, setVisibility] = useState('');
 
-	const url = 'http://localhost:3001/api/courses';
+	const url = 'https://crud-mvc-api.herokuapp.com/api/courses';
 
 	useEffect(() => {
 		Axios.get(`${url}`)
