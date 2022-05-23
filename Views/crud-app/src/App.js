@@ -14,8 +14,10 @@ function App() {
 	const [background, setBackground] = useState('');
 	const [visibility, setVisibility] = useState('');
 
+	const url = 'http://localhost:3001/api/courses';
+
 	useEffect(() => {
-		Axios.get('http://localhost:3001/api/courses')
+		Axios.get(`${url}`)
 			.then((response) => {
 				setCourses(response.data);
 			})
@@ -29,7 +31,7 @@ function App() {
 			setVisibility('visible');
 			return;
 		}
-		Axios.post('http://localhost:3001/api/courses', {
+		Axios.post(`${url}`, {
 			name: courseName,
 			numberOfHours: numberOfHours,
 		})
@@ -54,7 +56,7 @@ function App() {
 			setVisibility('visible');
 			return;
 		}
-		Axios.put('http://localhost:3001/api/courses', {
+		Axios.put(`${url}`, {
 			newCourseName: newCourseName,
 			id: id,
 		})
@@ -72,7 +74,7 @@ function App() {
 		setRefresh(!refresh);
 	};
 	const deleteCourse = (id) => {
-		Axios.delete(`http://localhost:3001/api/courses/${id}`)
+		Axios.delete(`${url}/${id}`)
 			.then(() => {
 				setMessage('Course Delete Success!!');
 				setBackground('green');
